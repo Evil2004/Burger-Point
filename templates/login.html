@@ -1,0 +1,60 @@
+<!-- prettier-ignore -->
+{% extends "layout.html" %}
+{% load static %}
+{% block title%}Login{%endblock title%}
+{% block css %} <link rel="stylesheet" href={% static "css/login.css" %}> {% endblock css %}
+{% block content %}
+<!-- prettier -->
+<div class="login-wrapper my-4 row">
+  <div class="login-img-anim p-auto m-auto col d-flex justify-content-center">
+    <lottie-player
+      src="https://assets2.lottiefiles.com/private_files/lf30_1koj5vle.json"
+      background="transparent"
+      speed="1"
+      class="w-75"
+      loop
+      autoplay
+    ></lottie-player>
+  </div>
+  <div class="login-form-wrapper container pl-3 ml-3 col-5">
+    <div class="login-form">
+      <h1 class="login-heading mx-2">Login</h1>
+      <p class="error text-danger d-none"></p>
+      <form onsubmit="sendData()" method="POST">
+        {% csrf_token %}
+        <div class="f-f form-floating w-75 row">
+          <input
+            type="text"
+            name="email"
+            id="email"
+            class="form-control w-75 mt-0"
+            placeholder="Email"
+            required
+          />
+          <label for="username">Email *</label>
+        </div>
+        <div class="f-f form-floating w-75 row">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="form-control w-75 mt-0"
+            placeholder="Password"
+            required
+          />
+          <span class="f-p"
+            ><a class="" href="/forgetpass">Forget Password?</a></span
+          >
+          <label for="password">Password *</label>
+        </div>
+        <div class="f-f">
+          <button type="submit" class="btn btn-primary my-2">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block js %}
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+{% endblock js %}

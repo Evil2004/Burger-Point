@@ -1,0 +1,127 @@
+<!-- prettier-ignore -->
+{% extends "layout.html" %}
+{% load static %}
+{% block title%}home{%endblock title%}
+{% block css %} <link rel="stylesheet" href={% static "css/home.css" %}> {% endblock css %}
+{% block content %}
+<!-- animation banner -->
+<div class="food-animation-wrapper">
+  <h1 class="food-animation-heading">Best Seller</h1>
+  <div
+    id="food-animation-carousel"
+    class="food-animation carousel carousel-dark slide w-75"
+    data-bs-ride="carousel"
+  >
+    <div class="food-animation-inner carousel-inner mx-auto">
+      <div class="carousel-item active">
+        <div class="mySlides p-3 row">
+          <div class="mySlides-img col-md-6">
+            <img src="../images/burger-10909.png" class="w-75" alt="..." />
+          </div>
+          <div class="mySlides-text col-md-6">
+            <h3>Aloo Tikki Burger</h3>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus,
+              odit.
+            </p>
+            <div class="explore">
+              <a href="/menu" class="btn btn-primary explore-btn"
+                >Explore More</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="mySlides p-3 row">
+          <div class="mySlides-img col-md-6">
+            <img
+              src="../images/pngfind.com-kfc-png-1264238.png"
+              class="w-75"
+              alt="..."
+            />
+          </div>
+          <div class="mySlides-text col-md-6 text-align-center">
+            <h3>Chicken Cheese Burger</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Molestias, aut.
+            </p>
+            <div class="explore">
+              <a href="/menu" class="btn btn-primary explore-btn"
+                >Explore More</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="mySlides p-3 row">
+          <div class="mySlides-img col-md-6">
+            <img
+              src="../images/pT5rqGjGc-removebg-preview.png"
+              class="w-75"
+              alt="..."
+            />
+          </div>
+          <div class="mySlides-text col-md-6">
+            <h3>Aloo Tikki Burger Combo</h3>
+            <p>Ingredients which are best in world</p>
+            <div class="explore">
+              <a href="/menu" class="btn btn-primary explore-btn"
+                >Explore More</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- food menu -->
+<div class="food-menu-wrapper w-100">
+  <h3 class="food-menu-heading text-center">Explore Our Food</h3>
+  <div class="menu-button justify-content-center d-flex align-items-center">
+    <a href="/menu" class="menu-btn btn btn-primary">Menu</a>
+  </div>
+</div>
+<!-- about us -->
+<div class="about-us m-5 container">
+  <div class="about-us-1 border my-3 py-3 row">
+    <div class="about-us-1-img col">
+      <img src="../images/food-1.png" class="w-75" alt="..." />
+    </div>
+    <div class="about-us-1-text col">
+      <h4>Best Ingredients</h4>
+      <p>
+        Lorem ipsum dolor sit amet consectetur <br />
+        adipisicing elit. Optio, iste?
+      </p>
+    </div>
+  </div>
+  <div class="about-us-2 border my-3 py-3 row">
+    <div class="about-us-2-text col">
+      <h4>Best Ingredients</h4>
+      <p>
+        Lorem ipsum dolor sit amet consectetur <br />
+        adipisicing elit. Optio, iste?
+      </p>
+    </div>
+    <div class="about-us-2-img col">
+      <img src="../images/food-2.png" class="w-75" alt="..." />
+    </div>
+  </div>
+  <div class="about-us-3 py-3 my-3 border row">
+    <div class="about-us-3-img col">
+      <img src="../images/food-3.png" class="w-75" alt="..." />
+    </div>
+    <div class="about-us-3-text col">
+      <h4>Best Ingredients</h4>
+      <p>
+        Lorem ipsum dolor sit amet consectetur <br />
+        adipisicing elit. Optio, iste?
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock content %}

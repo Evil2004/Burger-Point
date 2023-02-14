@@ -1,0 +1,169 @@
+<!-- prettier-ignore -->
+{% extends "layout.html" %}
+{% load static %}
+{% block title%}Signup{%endblock title%}
+{% block css %} <link rel="stylesheet" href={% static "css/signup.css" %}> {% endblock css %}
+{% block content %}
+<!-- prettier -->
+<div class="signup-wrapper my-4 row">
+  <div
+    class="signup-img-anim p-auto m-auto mt-1 col d-flex justify-content-center"
+  >
+    <lottie-player
+      src="https://assets2.lottiefiles.com/private_files/lf30_1koj5vle.json"
+      background="transparent"
+      speed="1"
+      class="w-75"
+      loop
+      autoplay
+    ></lottie-player>
+  </div>
+  <div class="signup-form-wrapper container col-5">
+    <div class="signup-form">
+      <h1 class="signup-heading mx-2">Register</h1>
+      
+        <p id="error text-danger d-none"></p>
+      
+      <form id="signup_form" onsubmit="sendData();return false" class="justify-content-center">
+        {% csrf_token %}
+        <div class="f-f-n row">
+          <div class="f-f form-floating w-75 col">
+            <input
+              type="text"
+              name="first_name"
+              
+              id="first_name"
+              class="form-control w-75 mx-0 mt-0 mb-1"
+              placeholder="Enter your name"
+            />
+            <label for="phone">First Name *</label>
+          </div>
+          <div class="f-f form-floating w-75 col">
+            <input
+              type="text"
+              name="last_name"
+              
+              id="last_name"
+              class="form-control w-75 mx-0 mt-0 mb-1"
+              placeholder="Enter your name"
+            />
+            <label for="phone">Last Name *</label>
+          </div>
+        </div>
+        <div class="f-f-e row">
+          <div class="f-f form-floating w-75 col">
+            <input
+              type="text"
+              name="email"
+              
+              id="email"
+              class="form-control w-75 mx-0 mt-0 mb-1"
+              placeholder="Enter your email"
+            />
+            <label for="email">Email *</label>
+          </div>
+          <div class="f-f form-floating w-75 col">
+            <input
+              type="tel"
+              name="phone"
+              
+              id="phone"
+              class="form-control w-75 mx-0 mt-0 mb-1"
+              placeholder="password"
+            />
+            <label for="phone">Phone No. *</label>
+          </div>
+        </div>
+        <div class="f-f-a row">
+          <div class="f-f form-floating w-75 col">
+            <input
+              type="text"
+              name="address"
+              id="address"
+              class="form-control w-75 mx-0 mt-0 mb-1"
+              placeholder="Address"
+            />
+            <label for="address">Address *</label>
+          </div>
+          <div class="f-f form-floating w-75 col">
+            <input
+              type="text"
+              name="city"
+              
+              id="city"
+              class="form-control w-75 mx-0 mt-0 mb-1"
+              placeholder="city"
+              required
+            />
+            <label for="city">City *</label>
+          </div>
+        </div>
+        <div class="f-f-e row">
+          <div class="f-f form-floating w-75 col">
+            <input
+              type="text"
+              name="pin"
+              value="{{ user.pin }}"
+              id="pin"
+              class="form-control w-75 mx-0 mt-0 mb-1"
+              placeholder="pincode"
+              pattern="[0-9]{6}"
+              required
+            />
+            <label class="w-75" for="pincode">Pincode *</label>
+          </div>
+          <div class="f-f form-floating w-75 col">
+            <input
+              type="text"
+              name="state"
+              
+              id="state"
+              class="form-control w-75 mx-0 mt-0 mb-1"
+              placeholder="state"
+              required
+            />
+            <label for="state">State *</label>
+          </div>
+        </div>
+        <div class="f-f-p row">
+          <div class="f-f form-floating w-75 col">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="form-control w-75 mx-0 mt-0 mb-1"
+              placeholder="Password"
+            />
+            <label for="password">Password *</label>
+          </div>
+          <div class="f-f form-floating w-75 col">
+            <input
+              type="password"
+              name="confirm_password"
+              id="confirm_password"
+              class="form-control w-75 mx-0 mt-0 mb-1"
+              placeholder="Confirm Password"
+            />
+            <label for="confirm_password">Confirm Password *</label>
+          </div>
+        </div>
+
+        <div class="f-f mx-auto mt-3 d-flex-col justify-content-center">
+          <span class="f-p"
+            >Already a customer?<a class="" href="/login">Login</a></span
+          ><br />
+          <button type="submit" class="btn btn-primary my-2">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} 
+<!-- prettier-ignore -->
+{% block js %}
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<script src={% static "js/signup.js" %}></script>
+
+{% endblock js %}
