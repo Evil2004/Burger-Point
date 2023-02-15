@@ -26,7 +26,9 @@ function sendData(event) {
     },
   })
     .then(response => {let data = response.json(); console.log(data);return data;})
+    .catch(error => console.log(error))
     .then(response => {
+      console.log(response.success)
       if (response.success === false){
         const error = document.getElementById("error text-danger d-none");
         error.innerHTML = response.error;
@@ -38,7 +40,8 @@ function sendData(event) {
         sessionStorage.setItem("token", token);
         window.location.href = "/";
       }
-    });
+    }) 
+    .catch(error => console.log(error));
 }
 
 

@@ -24,11 +24,16 @@ def login(request):
         is_email = Customer.objects.filter(email=email).exists()
         password_database = Customer.objects.filter(email=email).values('password')
         is_password = make_password(password) == password_database[0]['password']
+        
         if not is_email:
             return JsonResponse({'success': False,'error':'Customer does not exists'})
-        
+        # if password is incorrect
         if not is_password:
-            return JsonResponse({'success': False,'error':'Password incorrect'})
+            return JsonResponse({'success': False,'error':'Password/Email is incorrect'})
+        
+        customer_login = Customer.objects.get(email=email)
+        token = jwt_token_handler(customer_login)
+        return JsonResponse({'success': True,'error': 'null','token':token})
     
     return render(request,'login.html')
 
@@ -68,13 +73,20 @@ def register(request):
         
         # refresh token for user
 
-        token_payload = {
-            'first name':first_name,
-            'last_name':last_name,
-            'email':email,
-            'uuid': str(user_uuid),
-        }
-        token = jwt.encode(token_payload,'secret',algorithm='HS256')
-        print(token)
-        return JsonResponse({'success': True,'error': 'null','token':token})
+        token = jwt_token_handler(customer)
+        print(type(token))
+        return JsonResponse({'success': True,'error': 'null','token':str(token)})
     return render(request,'signup.html')
+
+
+# to generate token for customer utility function
+def jwt_token_handler (customer):
+    token_payload = {
+        'first_name':customer.first_name,
+        'last_name':customer.last_name,
+        'email':customer.email,
+        'uuid': str(customer.uuid),
+    }
+    token = jwt.encode(token_payload,'secret',algorithm='HS256')
+    return token
+
