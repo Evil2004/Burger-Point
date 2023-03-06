@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.template import Template
-from .models import Customer,Burger,Address
+from .models import Customer,Menu,Address, Cart, Orders
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import redirect
 import datetime
@@ -17,7 +17,9 @@ def home(request):
 def login(request):
     
     if request.method == 'POST':
-        data = json.loads(request.body)
+        print(request.body)
+        data = json.loads(str(request.body, encoding='utf-8'))
+        
         email = data['email']
         password = data['password']
         # check if email exists
@@ -40,6 +42,7 @@ def login(request):
 def register(request):
 
     if request.method == 'POST':
+        print(request.body)
         data = json.loads(request.body)
         first_name = data['first_name']
         last_name = data['last_name']
@@ -58,11 +61,15 @@ def register(request):
         # if email already exists
         is_email = Customer.objects.filter(email=email).exists()
         if is_email:
-            return JsonResponse({'success': False,'error':'Email already exists','user':user})
+            return JsonResponse({'success': False,'error':'Email already exists',})
+        
+        is_phone = Customer.objects.filter(phone=phone).exists()
+        if is_phone:
+            return JsonResponse({'success': False,'error':'Phone number already exists',})
 
         # if password does not match
         if password != password1:
-            return JsonResponse({'success': False,'error':'Password does not match','user':user})
+            return JsonResponse({'success': False,'error':'Password does not match',})
 
         encrypted_password = make_password(password)
         customer = Customer.objects.create(first_name=first_name,last_name=last_name,email=email,password=encrypted_password,phone=phone,uuid=user_uuid)
@@ -77,6 +84,14 @@ def register(request):
         print(type(token))
         return JsonResponse({'success': True,'error': 'null','token':str(token)})
     return render(request,'signup.html')
+
+def menu(request):
+    
+    menu_items = Menu.objects.all()
+    print(menu_items)
+    items = {'menu_items':menu_items}
+    return render(request,'menu.html',items)
+
 
 
 # to generate token for customer utility function

@@ -1,0 +1,49 @@
+.item-wrapper {
+  background-color: white;
+  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.603);
+  border-radius: 0.5rem;
+  font-size: calc(0.6rem + 0.1vw);
+  height: 90%;
+}
+
+.name {
+  font-size: calc(0.75rem + 0.1vw);
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.603);
+  margin: 0.5rem;
+}
+
+.price {
+  font-size: calc(0.75rem + 0.1vw);
+  font-weight: 600;
+  color: rgba(0, 0, 0);
+  margin: 0.5rem;
+}
+
+.cart-btn {
+  background-color: #ab6806;
+  color: whitesmoke;
+  border: 0;
+  border-radius: 0.5rem;
+
+  font-size: calc(0.6rem + 0.1vw);
+  transition: all 0.3s ease-in-out;
+}
+
+.cart-btn:hover {
+  letter-spacing: 1px;
+  background-color: #ab6806;
+}
+
+@media (min-width: 560px) and (max-width: 992px) {
+  .item-wrapper {
+    height: 100%;
+    padding: 0;
+  }
+  .name {
+    font-size: calc(0.65rem + 0.1vw);
+  }
+  .description {
+    font-size: calc(0.55rem + 0.1vw);
+  }
+}

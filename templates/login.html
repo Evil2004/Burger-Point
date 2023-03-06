@@ -19,26 +19,26 @@
   <div class="login-form-wrapper container pl-3 ml-3 col-5">
     <div class="login-form">
       <h1 class="login-heading mx-2">Login</h1>
-      <p class="error text-danger d-none"></p>
-      <form onsubmit="sendData()" method="POST">
+      <p id="error" class="error text-danger"></p>
+      <form onsubmit="sendData();return false;" class="lg-frm" method="POST">
         {% csrf_token %}
         <div class="f-f form-floating w-75 row">
           <input
             type="text"
             name="email"
             id="email"
-            class="form-control w-75 mt-0"
+            class="form-control w-75 mt-0 mb-1"
             placeholder="Email"
             required
           />
-          <label for="username">Email *</label>
+          <label for="email">Email *</label>
         </div>
         <div class="f-f form-floating w-75 row">
           <input
             type="password"
             name="password"
             id="password"
-            class="form-control w-75 mt-0"
+            class="form-control w-75 mt-0 mb-1"
             placeholder="Password"
             required
           />
@@ -52,15 +52,16 @@
         </div>
       </form>
       <div class="f-f">
-        <p class="f-p">
-          Don't have an account? <a href="/signup">Register</a>
+        <p class="f-r">
+          Don't have an account? <a href="/register/">Register</a>
         </p>
+      </div>
     </div>
   </div>
 </div>
 <!-- prettier-ignore -->
 {% endblock content %}
-{% block js %}
+  {% block js %}
+<script src="../static/js/login.js"></script>
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<script src={% static "js/login.js" %}></script>
 {% endblock js %}

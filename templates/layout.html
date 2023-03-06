@@ -21,21 +21,36 @@
       <nav
         class="navbar p-0 mb-1 navbar-expand-lg justify-content-between navbar-light sticky-top"
       >
-        <a href="#" class="navbar-brand"
+        <a href="#" class="navbar-brand" style="font-size: calc(0.8rem + 0.1vw)"
           ><img
             class="m-2"
             src="../static/images/burger-removebg-preview-removebg-preview.png"
             alt=""
           />Burger point</a
         >
-        <ul class="navbar-nav">
-          <a href="/" class="nav-link" id="home">Home</a>
-          <a href="/cart/" id="cart" class="nav-link">cart</a>
-          <a href="/menu/" id="menu" class="nav-link">Menu</a>
-          <a href="/login/" id="login" class="nav-link">Login</a>
-          <a href="/profile/" id="profile" class="nav-link">profile</a>
-          <a href="/" onclick="deleteToken()" id="logout" class="nav-link">logout</a>
-        </ul>
+        <button
+          class="navbar-toggler shadow-none"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-lg-auto ms-4">
+            <a href="/" class="nav-link" id="home">Home</a>
+            <a href="/cart/" id="cart" class="nav-link">cart</a>
+            <a href="/menu/" id="menu" class="nav-link">Menu</a>
+            <a href="/login/" id="login" class="nav-link">Login</a>
+            <a href="/profile/" id="profile" class="nav-link">profile</a>
+            <a href="/" onclick="deleteToken()" id="logout" class="nav-link"
+              >logout</a
+            >
+          </ul>
+        </div>
       </nav>
       <!-- content -->
       {% block content %} {% endblock content %}
@@ -78,6 +93,11 @@
           document.querySelector("#logout").style.display = "none";
           document.querySelector("#profile").style.display = "none";
           document.querySelector("#cart").style.display = "none";
+        }
+        if (token) {
+          return true;
+        } else {
+          return false;
         }
       }
     </script>
