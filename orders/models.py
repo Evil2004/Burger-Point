@@ -11,6 +11,14 @@ from cloudinary.models import CloudinaryField
 class Customer(AbstractUser):
     phone = models.CharField(max_length=15,default=None,unique=True)
     uuid = models.UUIDField(default=None,editable=False,unique=True)
+    
+    # remove unique constraint on username
+    username = None
+    USERNAME_FIELD = 'email'
+    email = models.EmailField(unique=True)
+    
+    REQUIRED_FIELDS = []
+    
     def __str__(self):
         return self.username
 
