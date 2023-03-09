@@ -2,10 +2,7 @@ from django.shortcuts import render
 from django.template import Template
 from .models import Customer,Menu,Address, Cart, Orders
 from django.contrib.auth.hashers import make_password
-from django.shortcuts import redirect
-import datetime
-from django.conf import settings
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 import json
 import jwt
 import uuid
@@ -98,6 +95,44 @@ def menu(request):
     menu_items = Menu.objects.all()
     items = {'menu_items':menu_items}
     return render(request,'menu.html',items)
+
+def add_to_cart(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        item_id = data['item_id']
+        auth_token = request.headers['Authorization']
+        token = auth_token.split(' ')[1]
+        token_payload = jwt.decode(token,'secret',algorithms=['HS256'])
+        user_uuid = token_payload['uuid']
+        user_email = token_payload['email']
+        
+        customer = Customer.objects.get(email=user_email, uuid=user_uuid)
+        item = Menu.objects.get(id=item_id)
+        cart = Cart.objects.create(customer=customer,item=item)
+        cart.save()
+        
+        print(token_payload)
+        print(item_id)
+        
+    return JsonResponse({'success': True,'error': 'null'})
+
+def remove_from_cart(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        item_id = data['item_id']
+        auth_token = request.headers['Authorization']
+        token = auth_token.split(' ')[1]
+        token_payload = jwt.decode(token,'secret',algorithms=['HS256'])
+        user_uuid = token_payload['uuid']
+        user_email = token_payload['email']
+        
+        customer = Customer.objects.get(email=user_email, uuid=user_uuid)
+        item = Menu.objects.get(id=item_id)
+        cart = Cart.objects.get(customer=customer,item=item)
+        cart.delete()
+        print(token_payload)
+        print(item_id)
+    return JsonResponse({'success': True,'error': 'null'})
 
 
 

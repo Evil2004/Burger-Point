@@ -1,4 +1,6 @@
 function addCart(id) {
+  console.log("addCart() called");
+
   const token = sessionStorage.getItem("token");
 
   if (!token) {
@@ -15,20 +17,17 @@ function addCart(id) {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
-        "X-CSRFToken": getCookie("csrftoken"),
+        "X-CSRFToken": cookieValue("csrftoken"),
+        authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
         let data = response.json();
-        console.log(data);
         return data;
       })
       .then((response) => {
         if (response.success === false) {
           alert(response.error);
-        } else {
-          alert("Item added to cart successfully");
-          window.location.href = "/";
         }
       });
   }
@@ -48,3 +47,8 @@ function addCart(id) {
 
 //   return JSON.parse(jsonPayload);
 // }
+
+function cookieValue(_cookieName) {
+  const cookie = document.cookie;
+  return cookie.split("=")[1];
+}
