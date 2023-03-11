@@ -36,9 +36,22 @@
           <div
             class="cart-btn-wrapper mx-1 position-absolute"
             style="bottom: 10px"
+            id="addCartBtn{{item.id}}"
           >
             <a class="btn btn-primary cart-btn" onclick="addCart({{item.id}})"
               >Add to cart</a
+            >
+          </div>
+          <div
+            class="cart-btn-wrapper mx-1 position-absolute rmv-btn"
+            style="bottom: 10px"
+            id="removeCartBtn{{item.id}}"
+          >
+            <a
+              class="btn btn-primary cart-btn"
+              onclick="removeCart({{item.id}})"
+              style="background-color: red"
+              >Remove</a
             >
           </div>
         </div>
@@ -83,6 +96,7 @@
                 class="btn btn-primary cart-btn"
                 id="cartBtn"
                 onclick="addCart({{item.id}})"
+                style="background-color: red"
                 >Add to cart</a
               >
             </div>

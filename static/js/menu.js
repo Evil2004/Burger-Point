@@ -26,27 +26,65 @@ function addCart(id) {
         return data;
       })
       .then((response) => {
-        if (response.success === false) {
+        const addId = "addCartBtn" + id;
+        const removeId = "removeCartBtn" + id;
+        const addBtn = document.getElementById(addId);
+        const removeBtn = document.getElementById(removeId);
+        if (response.added === false && response.in_cart === true) {
+          addBtn.style.display = "none";
+          removeBtn.style.display = "block";
           alert(response.error);
+        } else if (response.added === false) {
+          alert(response.error);
+        } else {
+          addBtn.style.display = "none";
+          removeBtn.style.display = "block";
+          alert("Item added to cart");
         }
       });
   }
 }
-// function parseJwt(token) {
-//   var base64Url = token.split(".")[1];
-//   var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-//   var jsonPayload = decodeURIComponent(
-//     window
-//       .atob(base64)
-//       .split("")
-//       .map(function (c) {
-//         return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-//       })
-//       .join("")
-//   );
 
-//   return JSON.parse(jsonPayload);
-// }
+function removeCart(item_id) {
+  const token = sessionStorage.getItem("token");
+
+  if (!token) {
+    alert("Please login to remove items from cart");
+    window.location.href = "/login/";
+    return;
+  } else {
+    const addId = "addCartBtn" + item_id;
+    const removeId = "removeCartBtn" + item_id;
+    const addBtn = document.getElementById(addId);
+    const removeBtn = document.getElementById(removeId);
+    let data = {
+      item_id: item_id,
+    };
+    fetch("/remove_from_cart/", {
+      method: "DELETE",
+      credentials: "same-origin",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": cookieValue("csrftoken"),
+        authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        let data = response.json();
+        return data;
+      })
+      .then((response) => {
+        if (response.removed === false) {
+          alert(response.error);
+        } else {
+          addBtn.style.display = "block";
+          removeBtn.style.display = "none";
+          alert("Item removed from cart");
+        }
+      });
+  }
+}
 
 function cookieValue(_cookieName) {
   const cookie = document.cookie;

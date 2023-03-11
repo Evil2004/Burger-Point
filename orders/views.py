@@ -83,7 +83,7 @@ def register(request):
             # refresh token for user
 
             token = jwt_token_handler(customer)
-            print(type(token))
+            
             return JsonResponse({'success': True,'error': 'null','token':str(token)})
         
         except Exception as e:
@@ -105,19 +105,21 @@ def add_to_cart(request):
         token_payload = jwt.decode(token,'secret',algorithms=['HS256'])
         user_uuid = token_payload['uuid']
         user_email = token_payload['email']
-        
         customer = Customer.objects.get(email=user_email, uuid=user_uuid)
         item = Menu.objects.get(id=item_id)
-        cart = Cart.objects.create(customer=customer,item=item)
+        # if item already in cart
+        is_cart = Cart.objects.filter(customer=customer,menu_item=item).exists()
+        if is_cart:
+            return JsonResponse({'added': False,'error':'Item already in cart','in_cart': True})
+        
+        cart = Cart.objects.create(customer=customer,menu_item=item)
         cart.save()
         
-        print(token_payload)
-        print(item_id)
         
-    return JsonResponse({'success': True,'error': 'null'})
+    return JsonResponse({'added': True,'error': 'null','in_cart': False})
 
 def remove_from_cart(request):
-    if request.method == 'POST':
+    if request.method == 'DELETE':
         data = json.loads(request.body)
         item_id = data['item_id']
         auth_token = request.headers['Authorization']
@@ -125,14 +127,28 @@ def remove_from_cart(request):
         token_payload = jwt.decode(token,'secret',algorithms=['HS256'])
         user_uuid = token_payload['uuid']
         user_email = token_payload['email']
-        
         customer = Customer.objects.get(email=user_email, uuid=user_uuid)
         item = Menu.objects.get(id=item_id)
-        cart = Cart.objects.get(customer=customer,item=item)
+        is_cart = Cart.objects.filter(customer=customer,menu_item=item).exists()
+        if not is_cart:
+            return JsonResponse({'removed': False,'error':'Item not in cart','in_cart': False})
+        
+        cart = Cart.objects.get(customer=customer,menu_item=item)
         cart.delete()
-        print(token_payload)
-        print(item_id)
-    return JsonResponse({'success': True,'error': 'null'})
+    return JsonResponse({'removed': True,'error': 'null','in_cart': True})
+
+
+def cart(request):
+    auth_token = request.headers['Authorization']
+    token = auth_token.split(' ')[1]
+    token_payload = jwt.decode(token,'secret',algorithms=['HS256'])
+    user_uuid = token_payload['uuid']
+    user_email = token_payload['email']
+    customer = Customer.objects.get(email=user_email, uuid=user_uuid)
+    cart_items = Cart.objects.filter(customer=customer)
+    items = {'cart_items':cart_items}
+    return render(request,'cart.html',items)
+
 
 
 
