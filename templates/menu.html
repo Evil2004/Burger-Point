@@ -100,6 +100,76 @@
                 >Add to cart</a
               >
             </div>
+            <div
+              class="cart-btn-wrapper mx-1 position-absolute rmv-btn"
+              style="bottom: 10px"
+              id="removeCartBtn{{item.id}}"
+            >
+              <a
+                class="btn btn-primary cart-btn"
+                onclick="removeCart({{item.id}})"
+                style="background-color: red"
+                >Remove</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- prettier-ignore -->
+      {% endif %} 
+    {% endfor %}
+    </div>
+    <h2 class="heading-2 m-2 bug-snd text-center">Beverages and Deserts</h2>
+    <div class="burger_wrapper w-100 row justify-content-between mt-4">
+      <!-- prettier-ignore -->
+      {% for item in menu_items %} 
+      {% if item.category == "beverages" %}
+      <!-- prettier -->
+      <div class="item-parent-wrapper col-md-3">
+        <div class="item-wrapper p-0">
+          <div class="image-wrapper p-2 h-50 w-100">
+            <img
+              class="item-image w-100 h-100 rounded"
+              src="{{item.image.url}}"
+              alt=""
+            />
+          </div>
+          <div class="about m-0 h-50 position-relative">
+            <p class="m-1 my-0 p-1 py-1 name">{{item.name}}</p>
+            <p class="m-1 p-1 my-0 py-0 price d-flex justify-content-end">
+              &#8377; {{item.price}}
+            </p>
+
+            {% if item.description != "0" %}
+            <p class="m-1 my-0 mt-1 p-1 py-0 description">
+              {{item.description}}
+            </p>
+            {% endif %}
+
+            <div
+              class="cart-btn-wrapper mx-1 position-absolute"
+              style="bottom: 10px"
+            >
+              <a
+                class="btn btn-primary cart-btn"
+                id="cartBtn"
+                onclick="addCart({{item.id}})"
+                style="background-color: red"
+                >Add to cart</a
+              >
+            </div>
+            <div
+              class="cart-btn-wrapper mx-1 position-absolute rmv-btn"
+              style="bottom: 10px"
+              id="removeCartBtn{{item.id}}"
+            >
+              <a
+                class="btn btn-primary cart-btn"
+                onclick="removeCart({{item.id}})"
+                style="background-color: red"
+                >Remove</a
+              >
+            </div>
           </div>
         </div>
       </div>

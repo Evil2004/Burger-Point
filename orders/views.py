@@ -6,6 +6,7 @@ from django.http import JsonResponse
 import json
 import jwt
 import uuid
+from datetime import datetime
 
 # Create your views here.
 def home(request):
@@ -14,7 +15,6 @@ def home(request):
 def login(request):
     
     if request.method == 'POST':
-
         try :
             data = json.loads(str(request.body, encoding='utf-8'))
             email = data['email']
@@ -44,7 +44,7 @@ def register(request):
 
     if request.method == 'POST':
         try:
-            print(request.body)
+            
             data = json.loads(request.body)
             first_name = data['first_name']
             last_name = data['last_name']
@@ -139,15 +139,61 @@ def remove_from_cart(request):
 
 
 def cart(request):
-    auth_token = request.headers['Authorization']
-    token = auth_token.split(' ')[1]
-    token_payload = jwt.decode(token,'secret',algorithms=['HS256'])
-    user_uuid = token_payload['uuid']
-    user_email = token_payload['email']
+    if request.method == 'GET':
+        user_uuid = request.GET.get('user_uuid')
+        user_id = request.GET.get('user_id')
+        
+        customer = Customer.objects.get(id=user_id, uuid=user_uuid)
+        customer_addresses = Address.objects.filter(customer=customer)
+        
+        cart_items = Cart.objects.filter(customer=customer)
+        food_items = []
+        for item in cart_items:
+            food_items.append(item.menu_item)
+        items = {'food_items':food_items,'customer_addresses':customer_addresses,'customer_phone':customer.phone}
+     
+        return render(request,'cart.html',items)
+
+
+
+def order(request):
+    if request.method == "POST":
+            print("order")
+            print(request.body)
+            auth_token = request.headers['Authorization']
+            token = auth_token.split(' ')[1]
+            token_payload = jwt.decode(token,'secret',algorithms=['HS256'])
+            user_uuid = token_payload['uuid']
+            user_email = token_payload['email']
+            customer = Customer.objects.get(email=user_email, uuid=user_uuid)
+            cart_items = json.loads(request.body)
+            # print(cart_items)
+        
+            for cart_item in cart_items['items']:
+                
+                print(cart_item)
+                item_id = cart_item['item_id']
+                item_quantity = cart_item['quantity']
+                cost = cart_item['item_cost']
+                print(item_id,item_quantity,cost)
+                menu_item = Menu.objects.get(id=item_id)
+                order = Orders.objects.create(customer=customer,menu_item=menu_item,quantity=item_quantity,cost=cost,order_date_time=datetime.now())
+                order.save()
+                print(order)
+            cart_items = Cart.objects.filter(customer=customer)
+            cart_items.delete()
+            return JsonResponse({'success': True,'error': 'null'})
+
+# profile view
+def profile(request):
+   
+    user_uuid = request.GET.get('user_uuid')
+    user_email = request.GET.get('user_email')
     customer = Customer.objects.get(email=user_email, uuid=user_uuid)
-    cart_items = Cart.objects.filter(customer=customer)
-    items = {'cart_items':cart_items}
-    return render(request,'cart.html',items)
+    address = Address.objects.get(customer=customer)
+    items = {'customer':customer,'address':address}
+    return render(request,'profile.html',items)
+
 
 
 
@@ -159,6 +205,7 @@ def jwt_token_handler (customer):
         'last_name':customer.last_name,
         'email':customer.email,
         'uuid': str(customer.uuid),
+        'id': customer.id,
     }
     token = jwt.encode(token_payload,'secret',algorithm='HS256')
     return token

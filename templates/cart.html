@@ -1,0 +1,113 @@
+<!-- prettier-ignore-->
+{% extends 'layout.html' %} 
+{% load static %} 
+{% block title %}Cart{% endblock title %} 
+{% block css %} <link rel="stylesheet" href={% static "css/cart.css" %}> {% endblock css %} 
+{% block content %}
+<!-- prettier -->
+<div class="cart-wrapper">
+  <div class="heading d-flex justify-content-center text-center">
+    <h1>Cart</h1>
+  </div>
+
+  <!-- prettier-ignore -->
+  {% if food_items %}
+  <div class="cart-item-wrapper container">
+    {% for item in food_items %}
+    <div class="cart-item p-1 row" id="item{{item.id}}">
+      <div class="col-md-3">
+        <img class="cart-item-image w-50" src="{{item.image.url}}" alt="" />
+      </div>
+      <div class="col-md-6">
+        <p class="cart-item-name">{{item.name}}</p>
+        <p class="cart-item-price item-price">
+          &#8377; <span id="item_price{{item.id}}">{{item.price}}</span>
+        </p>
+      </div>
+      <div class="col-md-3">
+        <div class="count">
+          <button
+            class="btn btn-primary"
+            onclick="decrementValue({{item.id}},{{item.price}})"
+          >
+            -
+          </button>
+          <input
+            type="number"
+            class="w-25"
+            id="number{{item.id}}"
+            min="1"
+            value="1"
+            readonly
+          />
+          <button
+            class="btn btn-primary"
+            onclick="incrementValue({{item.id}},{{item.price}})"
+          >
+            +
+          </button>
+        </div>
+        <div class="cart-item-btn-wrapper">
+          <a
+            class="btn btn-primary cart-item-btn"
+            onclick="removeCart({{item.id}})"
+            >Remove</a
+          >
+        </div>
+      </div>
+    </div>
+    <!-- prettier-ignore -->
+    {% endfor %}
+  </div>
+
+  <!-- customer address and phone number -->
+  <div class="address-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="address">
+            <p class="address-text">Delivery address:</p>
+            {% for address in customer_addresses %}
+            <p>
+              {{ address.address }}, {{ address.city }} <br />
+              {{address.state}}, {{address.pin}}
+            </p>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="phone-number">
+            <p class="phone-number-text">Phone Number:</p>
+            <p>{{customer_phone}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- total price and order button -->
+  <div class="total-price-wrapper row container">
+    <div class="total-price col-md">
+      <p class="total-price-text">
+        Total Price <span id="price-value">&#8377; 0</span>
+      </p>
+    </div>
+    <div class="order-btn-wrapper col-md">
+      <button onclick="order()" class="btn-primary btn">Order</button>
+    </div>
+  </div>
+  {% else %}
+  <div class="cart-item-wrapper container">
+    <div class="cart-empty">
+      <div class="">
+        <p class="cart-item-name">Cart is empty</p>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+<!-- prettier-ignore -->
+{% endblock content %} 
+{% block js %}
+<script src="../static/js/cart.js"></script>
+{% endblock js %}

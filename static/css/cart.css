@@ -1,0 +1,11 @@
+body {
+  background: linear-gradient(315deg, orange 22%, #eee 100%);
+}
+
+.cart-item {
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

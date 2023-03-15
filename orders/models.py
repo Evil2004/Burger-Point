@@ -47,7 +47,8 @@ class Orders (models.Model):
     customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
     menu_item = models.ForeignKey(Menu,on_delete=models.CASCADE)
     quantity = models.IntegerField(default=0)
-    order_date = models.DateField()
+    order_date_time = models.DateTimeField(default=None)
+    cost = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
 
 class Cart (models.Model):
     customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
