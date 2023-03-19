@@ -177,7 +177,7 @@ def order(request):
                 cost = cart_item['item_cost']
                 print(item_id,item_quantity,cost)
                 menu_item = Menu.objects.get(id=item_id)
-                order = Orders.objects.create(customer=customer,menu_item=menu_item,quantity=item_quantity,cost=cost,order_date_time=datetime.now())
+                order = Orders.objects.create(customer=customer,menu_item=menu_item,quantity=item_quantity,cost=cost,order_date=datetime.today(),order_time=datetime.now().time())
                 order.save()
                 print(order)
             cart_items = Cart.objects.filter(customer=customer)
@@ -188,10 +188,22 @@ def order(request):
 def profile(request):
    
     user_uuid = request.GET.get('user_uuid')
-    user_email = request.GET.get('user_email')
-    customer = Customer.objects.get(email=user_email, uuid=user_uuid)
+    user_id = request.GET.get('user_id')
+    customer = Customer.objects.get(id=user_id, uuid=user_uuid)
     address = Address.objects.get(customer=customer)
-    items = {'customer':customer,'address':address}
+    all_orders = Orders.objects.filter(customer=customer)
+    orders = []
+    for i in all_orders:
+        order = {
+            'menu_item':i.menu_item,
+            'quantity':i.quantity,
+            'cost':i.cost,
+            'order_date': i.order_date,
+            'order_time': i.order_time,
+        }
+        orders.append(order)
+    
+    items = {'customer':customer,'address':address, 'orders':orders}
     return render(request,'profile.html',items)
 
 

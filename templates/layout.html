@@ -95,7 +95,7 @@
           ).href = `/cart/?user_id=${jwt_data.id}&&user_uuid=${jwt_data.uuid}`;
           document.querySelector(
             "#profile"
-          ).href = `/cart/?user_id=${jwt_data.id}&&user_uuid=${jwt_data.uuid}`;
+          ).href = `/profile/?user_id=${jwt_data.id}&&user_uuid=${jwt_data.uuid}`;
         } else {
           document.querySelector("#login").style.display = "block";
           document.querySelector("#logout").style.display = "none";

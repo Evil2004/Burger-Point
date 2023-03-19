@@ -1,0 +1,34 @@
+body {
+  background: linear-gradient(315deg, orange 22%, #eee 100%);
+}
+
+.profile-details {
+  background: #eee;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.order-item-wrapper::-webkit-scrollbar {
+  width: 5px; /* width of the entire scrollbar */
+}
+.order-item-wrapper::-webkit-scrollbar-track {
+  background: #eee; /*color of the tracking area */
+}
+.order-item-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgb(161, 106, 3); /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+}
+
+.order-item-wrapper {
+  height: 50vh;
+}
+
+.order-item {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}

@@ -1,6 +1,67 @@
 <!-- prettier-ignore -->
-
 {% extends 'layout.html' %}
 {% load static %}
 {% block title %}Profile{% endblock title %}
 {% block css %}
+<link rel="stylesheet" href={% static "css/profile.css" %}>
+{% endblock css %}
+{% block content %}
+<div class="profile-wrapper container">
+  <div class="heading d-flex justify-content-center text-center">
+    <!-- profile details -->
+    <h1>Profile</h1>
+  </div>
+  <div class="profile-content">
+    <div class="profile-details">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="profile-heading m-0">Name:</p>
+          <p class="content">{{customer.first_name}} {{customer.last_name}}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="profile-heading m-0">Email:</p>
+          <p class="content">{{customer.email}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <p class="profile-heading m-0">Phone:</p>
+          <p class="content">{{customer.phone}}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="profile-heading m-0">Address:</p>
+          <p class="contnet">
+            {{address.address}}, {{address.city}} {{address.pin}} <br />
+            {{address.state}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- orders by customer -->
+  <div class="order-wrapper w-100">
+    <div class="order-heading d-flex justify-content-center text-center">
+      <h3>Past Orders</h3>
+    </div>
+    <div class="order-item-wrapper overflow-scroll overflow-x-hidden w-100">
+      {% for order in orders %}
+      <div class="order-item row p-md-2">
+        <div class="col-md">
+          <div class="order-item-pic-nme">
+            <img class="w-25" src="{{order.menu_item.image.url}}" alt="" />
+            <span class="order-item-name">
+              {{order.menu_item.name}} X {{order.quantity}}
+            </span>
+          </div>
+        </div>
+        <div class="col-md o-p-d-t">
+          <div class="order-item-price">Price: &#8377; {{order.cost}}</div>
+          <div class="order-date">Order Date: {{order.order_date}}</div>
+          <div class="order-time">Order time: {{order.order_time}}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock content %}
