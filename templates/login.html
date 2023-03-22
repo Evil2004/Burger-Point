@@ -6,7 +6,9 @@
 {% block content %}
 <!-- prettier -->
 <div class="login-wrapper my-4 row">
-  <div class="login-img-anim p-auto m-auto col d-flex justify-content-center">
+  <div
+    class="login-img-anim p-auto m-auto col-md d-flex justify-content-center"
+  >
     <lottie-player
       src="https://assets2.lottiefiles.com/private_files/lf30_1koj5vle.json"
       background="transparent"
@@ -16,46 +18,47 @@
       autoplay
     ></lottie-player>
   </div>
-  <div class="login-form-wrapper container pl-3 ml-3 col-5">
-    <div class="login-form">
-      <h1 class="login-heading mx-2">Login</h1>
+  <div
+    class="login-form-wrapper d-flex align-content-center container pl-3 ml-3 col-md"
+  >
+    <div class="login-form w-100">
+      <h1 class="login-heading mx-2 text-center">Login</h1>
       <p id="error" class="error text-danger"></p>
-      <form onsubmit="sendData();return false;" class="lg-frm" method="POST">
-        {% csrf_token %}
-        <div class="f-f form-floating w-75 row">
-          <input
-            type="text"
-            name="email"
-            id="email"
-            class="form-control w-75 mt-0 mb-1"
-            placeholder="Email"
-            required
-          />
-          <label for="email">Email *</label>
-        </div>
-        <div class="f-f form-floating w-75 row">
-          <input
-            type="password"
-            name="password"
-            id="password"
-            class="form-control w-75 mt-0 mb-1"
-            placeholder="Password"
-            required
-          />
-          <span class="f-p"
-            ><a class="" href="/forgetpass">Forget Password?</a></span
-          >
-          <label for="password">Password *</label>
-        </div>
+      <div class="d-flex flex-column align-items-center">
+        <form onsubmit="sendData();return false;" class="lg-frm" method="POST">
+          {% csrf_token %}
+          <div class="f-f form-floating">
+            <input
+              type="text"
+              name="email"
+              id="email"
+              class="form-control"
+              placeholder="Email"
+              required
+            />
+            <label for="email">Email *</label>
+          </div>
+          <div class="f-f form-floating">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="form-control"
+              placeholder="Password"
+              required
+            />
+            <label for="password">Password *</label>
+          </div>
+          <div class="f-f d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary my-3">Login</button>
+          </div>
+        </form>
         <div class="f-f">
-          <button type="submit" class="btn btn-primary my-2">Login</button>
+          <p class="f-r">
+            Don't have an account? <br />
+            <a href="/register/">Register</a>
+          </p>
         </div>
-      </form>
-      <div class="f-f">
-        <p class="f-r">
-          Don't have an account? <br />
-          <a href="/register/">Register</a>
-        </p>
       </div>
     </div>
   </div>

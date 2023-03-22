@@ -1,0 +1,20 @@
+databases:
+  - name: postgres
+    databaseName: postgres_l42c
+    user: postgres_l42c_user
+
+services:
+  - type: web
+    name: burger_point
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn burger_point.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: postgres
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4

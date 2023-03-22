@@ -15,16 +15,16 @@
     {% for item in menu_items %} 
     {% if item.category == "burger" %}
     <!-- prettier -->
-    <div class="item-parent-wrapper col-md-3">
-      <div class="item-wrapper p-0">
-        <div class="image-wrapper p-2 h-50 w-100">
+    <div class="item-parent-wrapper p-2 col-md-3">
+      <div class="item-wrapper h-100 p-0">
+        <div class="image-wrapper p-1 h-50 w-100">
           <img
             class="item-image w-100 h-100 rounded"
             src="{{item.image.url}}"
             alt=""
           />
         </div>
-        <div class="about m-0 h-50 position-relative">
+        <div class="about h-50 m-0 position-relative">
           <p class="m-1 my-0 p-1 py-1 name">{{item.name}}</p>
           <p class="m-1 p-1 my-0 py-0 price d-flex justify-content-end">
             &#8377; {{item.price}}
@@ -34,7 +34,7 @@
           {% endif %}
 
           <div
-            class="cart-btn-wrapper mx-1 position-absolute"
+            class="cart-btn-wrapper mx-1 my-1 position-absolute"
             style="bottom: 10px"
             id="addCartBtn{{item.id}}"
           >
@@ -50,7 +50,7 @@
             <a
               class="btn btn-primary cart-btn"
               onclick="removeCart({{item.id}})"
-              style="background-color: red"
+              style="background-color: red; bottom: 10px"
               >Remove</a
             >
           </div>
@@ -61,15 +61,16 @@
     {% endif %} 
     {% endfor %}
     <!-- prettier -->
-    <h2 class="heading-2 m-2 bug-snd text-center">Sides</h2>
-    <div class="burger_wrapper w-100 row justify-content-between mt-4">
+    <!-- Sides -->
+    <h2 class="heading-2 m-2 mt-3 mb-0 sid-hdng text-center">Sides</h2>
+    <div class="burger_wrapper w-100 row justify-content-between mt-3">
       <!-- prettier-ignore -->
       {% for item in menu_items %} 
       {% if item.category == "sides" %}
       <!-- prettier -->
-      <div class="item-parent-wrapper col-md-3">
-        <div class="item-wrapper p-0">
-          <div class="image-wrapper p-2 h-50 w-100">
+      <div class="item-parent-wrapper p-2 col-md-3">
+        <div class="item-wrapper h-100 p-0">
+          <div class="image-wrapper p-1 h-50 w-100">
             <img
               class="item-image w-100 h-100 rounded"
               src="{{item.image.url}}"
@@ -77,7 +78,7 @@
             />
           </div>
           <div class="about m-0 h-50 position-relative">
-            <p class="m-1 my-0 p-1 py-1 name">{{item.name}}</p>
+            <p class="m-1 my-0 p-1 name">{{item.name}}</p>
             <p class="m-1 p-1 my-0 py-0 price d-flex justify-content-end">
               &#8377; {{item.price}}
             </p>
@@ -89,14 +90,14 @@
             {% endif %}
 
             <div
-              class="cart-btn-wrapper mx-1 position-absolute"
+              class="cart-btn-wrapper mx-1 my-1"
+              id="addCartBtn{{item.id}}"
               style="bottom: 10px"
             >
               <a
                 class="btn btn-primary cart-btn"
                 id="cartBtn"
                 onclick="addCart({{item.id}})"
-                style="background-color: red"
                 >Add to cart</a
               >
             </div>
@@ -108,7 +109,7 @@
               <a
                 class="btn btn-primary cart-btn"
                 onclick="removeCart({{item.id}})"
-                style="background-color: red"
+                style="background-color: red; bottom: 10px"
                 >Remove</a
               >
             </div>
@@ -119,14 +120,15 @@
       {% endif %} 
     {% endfor %}
     </div>
-    <h2 class="heading-2 m-2 bug-snd text-center">Beverages and Deserts</h2>
+    <!-- Beverages and Deserts -->
+    <h2 class="heading-2 m-2 bvg-dsrt text-center">Beverages and Deserts</h2>
     <div class="burger_wrapper w-100 row justify-content-between mt-4">
       <!-- prettier-ignore -->
       {% for item in menu_items %} 
-      {% if item.category == "beverages" %}
+      {% if item.category == "beverage" or item.category == "dessert" %}
       <!-- prettier -->
-      <div class="item-parent-wrapper col-md-3">
-        <div class="item-wrapper p-0">
+      <div class="item-parent-wrapper p-2 col-md-3">
+        <div class="item-wrapper h-100 p-0">
           <div class="image-wrapper p-2 h-50 w-100">
             <img
               class="item-image w-100 h-100 rounded"
@@ -134,7 +136,7 @@
               alt=""
             />
           </div>
-          <div class="about m-0 h-50 position-relative">
+          <div class="about h-50 m-0 position-relative">
             <p class="m-1 my-0 p-1 py-1 name">{{item.name}}</p>
             <p class="m-1 p-1 my-0 py-0 price d-flex justify-content-end">
               &#8377; {{item.price}}
@@ -149,12 +151,12 @@
             <div
               class="cart-btn-wrapper mx-1 position-absolute"
               style="bottom: 10px"
+              id="addCartBtn{{item.id}}"
             >
               <a
                 class="btn btn-primary cart-btn"
                 id="cartBtn"
                 onclick="addCart({{item.id}})"
-                style="background-color: red"
                 >Add to cart</a
               >
             </div>
@@ -166,7 +168,7 @@
               <a
                 class="btn btn-primary cart-btn"
                 onclick="removeCart({{item.id}})"
-                style="background-color: red"
+                style="background-color: red; bottom: 10px"
                 >Remove</a
               >
             </div>

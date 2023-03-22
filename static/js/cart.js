@@ -2,11 +2,17 @@ function incrementValue(item_id, price) {
   id = "number" + item_id;
   price_id = "item_price" + item_id;
   let value = parseInt(document.getElementById(id).value, 10);
+  let total_value = parseInt(
+    document.getElementById("price-value").innerHTML,
+    10
+  );
   value = isNaN(value) ? 0 : value;
   if (value < 99) {
     value++;
     document.getElementById(id).value = value;
     document.getElementById(price_id).innerHTML = price * value + ".00";
+    document.getElementById("price-value").innerHTML =
+      total_value + price + ".00";
   }
 }
 
@@ -14,11 +20,17 @@ function decrementValue(item_id, price) {
   price_id = "item_price" + item_id;
   id = "number" + item_id;
   let value = parseInt(document.getElementById(id).value, 10);
+  let total_value = parseInt(
+    document.getElementById("price-value").innerHTML,
+    10
+  );
   value = isNaN(value) ? 0 : value;
   if (value > 1) {
     value--;
     document.getElementById(id).value = value;
     document.getElementById(price_id).innerHTML = price * value + ".00";
+    document.getElementById("price-value").innerHTML =
+      total_value - price + ".00";
   }
 }
 

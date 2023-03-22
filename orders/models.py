@@ -35,13 +35,14 @@ class Address(models.Model):
 class Menu(models.Model):
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = CloudinaryField("image")
+    image = CloudinaryField('image',folder='burger_point/images/')
     description = models.TextField(default = NULL)
     category = models.CharField(max_length=15)
 
     # It will return the name of the burger
     def __str__(self):
         return self.name
+
 
 class Orders (models.Model):
     customer = models.ForeignKey(Customer,on_delete=models.CASCADE)

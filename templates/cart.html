@@ -15,7 +15,7 @@
   <div class="cart-item-wrapper container">
     {% for item in food_items %}
     <div class="cart-item p-1 row" id="item{{item.id}}">
-      <div class="col-md-3">
+      <div class="col-md-3 d-flex justify-content-center">
         <img class="cart-item-image w-50" src="{{item.image.url}}" alt="" />
       </div>
       <div class="col-md-6">
@@ -26,28 +26,34 @@
       </div>
       <div class="col-md-3">
         <div class="count">
-          <button
-            class="btn btn-primary"
-            onclick="decrementValue({{item.id}},{{item.price}})"
-          >
-            -
-          </button>
-          <input
-            type="number"
-            class="w-25"
-            id="number{{item.id}}"
-            min="1"
-            value="1"
-            readonly
-          />
-          <button
-            class="btn btn-primary"
-            onclick="incrementValue({{item.id}},{{item.price}})"
-          >
-            +
-          </button>
+          <span>
+            <button
+              class="btn m-0 p-0 btn-primary btn-no"
+              onclick="decrementValue({{item.id}},{{item.price}})"
+            >
+              -
+            </button>
+          </span>
+          <span>
+            <input
+              type="number"
+              class=""
+              id="number{{item.id}}"
+              min="1"
+              value="1"
+              readonly
+            />
+          </span>
+          <span>
+            <button
+              class="btn btn-primary btn-no m-0 p-0"
+              onclick="incrementValue({{item.id}},{{item.price}})"
+            >
+              +
+            </button>
+          </span>
         </div>
-        <div class="cart-item-btn-wrapper">
+        <div class="cart-item-btn-wrapper mt-1">
           <a
             class="btn btn-primary cart-item-btn"
             onclick="removeCart({{item.id}})"
@@ -61,47 +67,60 @@
   </div>
 
   <!-- customer address and phone number -->
-  <div class="address-wrapper">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="address">
-            <p class="address-text">Delivery address:</p>
-            {% for address in customer_addresses %}
-            <p>
-              {{ address.address }}, {{ address.city }} <br />
-              {{address.state}}, {{address.pin}}
-            </p>
-            {% endfor %}
+  <div class="footer">
+    <div class="address-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="address">
+              <p class="address-text m-0 p-0">Delivery address:</p>
+              {% for address in customer_addresses %}
+              <p class="p-0 m-0">
+                {{ address.address }}, {{ address.city }} <br />
+                {{address.state}}, {{address.pin}}
+              </p>
+              {% endfor %}
+            </div>
           </div>
-        </div>
-        <div class="col-md-6">
-          <div class="phone-number">
-            <p class="phone-number-text">Phone Number:</p>
-            <p>{{customer_phone}}</p>
+          <div class="col-md-6">
+            <div class="phone-number">
+              <p class="phone-number-text m-0 p-0">Phone Number:</p>
+              <p class="m-0 p-0">{{customer_phone}}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- total price and order button -->
-  <div class="total-price-wrapper row container">
-    <div class="total-price col-md">
-      <p class="total-price-text">
-        Total Price <span id="price-value">&#8377; 0</span>
-      </p>
-    </div>
-    <div class="order-btn-wrapper col-md">
-      <button onclick="order()" class="btn-primary btn">Order</button>
+    <!-- total price and order button -->
+    <div class="total-price-wrapper row container p-1 m-2">
+      <div class="total-price col-md">
+        <p class="total-price-text">
+          Total Price: &#8377; <span id="price-value">{{total_price}}</span>
+        </p>
+      </div>
+      <div class="order-btn-wrapper col-md">
+        <button onclick="order()" class="btn-primary btn-odr btn">Order</button>
+      </div>
     </div>
   </div>
   {% else %}
-  <div class="cart-item-wrapper container">
-    <div class="cart-empty">
-      <div class="">
-        <p class="cart-item-name">Cart is empty</p>
-      </div>
+  <div class="cart-item-wrapper container" style="height: 77vh">
+    <div class="ltte-wrpr d-flex justify-content-center p-0 m-0">
+      <lottie-player
+        src="https://assets2.lottiefiles.com/temp/lf20_jzqS18.json"
+        background="transparent"
+        speed="1"
+        class="w-25"
+        loop
+        autoplay
+      ></lottie-player>
+    </div>
+    <div class="content">
+      <h4 class="text-center">OOPS! Your cart is empty</h4>
+      <p class="text-center">
+        <a href="/menu/" class="btn btn-info">Go Shopping</a>
+      </p>
     </div>
   </div>
   {% endif %}
@@ -109,5 +128,6 @@
 <!-- prettier-ignore -->
 {% endblock content %} 
 {% block js %}
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <script src="../static/js/cart.js"></script>
 {% endblock js %}

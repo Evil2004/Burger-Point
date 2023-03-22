@@ -2,6 +2,13 @@ body {
   background: linear-gradient(315deg, orange 22%, #eee 100%);
 }
 
+h2 {
+  font-size: calc(1.5rem + 0.1vw);
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.779);
+  margin: 0.5rem;
+}
+
 .item-wrapper {
   background-color: white;
   box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.603);

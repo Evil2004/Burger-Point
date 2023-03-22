@@ -5,7 +5,77 @@ body {
 .cart-item {
   background: #fff;
   border-radius: 10px;
-  padding: 10px;
+  font-size: calc(0.6rem + 0.2vw);
   margin: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.cart-empty {
+  display: grid;
+  place-content: center;
+}
+
+input {
+  width: 10%;
+  height: 100%;
+  border: 1px solid #000000c4;
+  outline: none;
+  text-align: center;
+  margin: 0;
+  font-size: calc(0.6rem + 0.2vw);
+}
+
+.btn-no {
+  width: calc(10%);
+  height: calc(7vh - 10px);
+  border-radius: 0;
+  border: 1px black;
+  border-style: dashed;
+  text-align: center;
+  color: black;
+  background-color: #eee;
+}
+
+.btn-no:hover {
+  background-color: #ddd;
+  color: black;
+  border-color: black;
+}
+
+.cart-item-btn {
+  background: red;
+  border: none;
+  font-size: calc(0.6rem + 0.2vw);
+  font-weight: normal;
+}
+
+.cart-item-btn:hover {
+  background: red;
+}
+
+.btn-odr {
+  font-weight: normal;
+  width: 50%;
+  color: #010101;
+  background: transparent;
+  border: 1px dashed black;
+  font-size: calc(0.6rem + 0.2vw);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-odr:hover {
+  background: linear-gradient(315deg, orange 22%, #eee 100%);
+  color: black;
+  border-color: black;
+}
+
+.footer {
+  background: #ddd;
+  color: black;
+  bottom: 0;
+  position: sticky;
+  font-size: calc(0.6rem + 0.2vw);
+  font-weight: normal;
+  padding: 10px;
+  text-align: center;
 }

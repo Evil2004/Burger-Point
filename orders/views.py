@@ -7,6 +7,10 @@ import json
 import jwt
 import uuid
 from datetime import datetime
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Create your views here.
 def home(request):
@@ -148,9 +152,11 @@ def cart(request):
         
         cart_items = Cart.objects.filter(customer=customer)
         food_items = []
+        total = 0
         for item in cart_items:
             food_items.append(item.menu_item)
-        items = {'food_items':food_items,'customer_addresses':customer_addresses,'customer_phone':customer.phone}
+            total += item.menu_item.price
+        items = {'food_items':food_items, 'total_price':total,'customer_addresses':customer_addresses,'customer_phone':customer.phone}
      
         return render(request,'cart.html',items)
 
@@ -162,7 +168,7 @@ def order(request):
             print(request.body)
             auth_token = request.headers['Authorization']
             token = auth_token.split(' ')[1]
-            token_payload = jwt.decode(token,'secret',algorithms=['HS256'])
+            token_payload = jwt.decode(token,os.environ.get('SECRET_KEY'),os.environ.get('ALGORITHM'))
             user_uuid = token_payload['uuid']
             user_email = token_payload['email']
             customer = Customer.objects.get(email=user_email, uuid=user_uuid)
@@ -219,6 +225,6 @@ def jwt_token_handler (customer):
         'uuid': str(customer.uuid),
         'id': customer.id,
     }
-    token = jwt.encode(token_payload,'secret',algorithm='HS256')
+    token = jwt.encode(token_payload,os.environ.get('SECRET_KEY'),os.environ.get('ALGORITHM'))
     return token
 
