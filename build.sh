@@ -1,5 +1,7 @@
 #!/bin/bash
 
+python -m pip install --upgrade pip
+
 pip install virtualenvwrapper-win
 mkvirtualenv burger_point
 workon burger_point
