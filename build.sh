@@ -1,6 +1,8 @@
 #!/bin/bash
 
-workon food
+pip install virtualenvwrapper-win
+mkvirtualenv burger_point
+workon burger_point
 
 pip install -r requirements.txt
 
