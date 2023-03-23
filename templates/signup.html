@@ -2,8 +2,9 @@
 {% extends "layout.html" %}
 {% load static %}
 {% block title%}Signup{%endblock title%}
-{% block css %} <link rel="stylesheet" href={% static "css/signup.css" %}> {% endblock css %}
-{% block content %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}" /> {% endblock css
+%} {% block content %}
 <!-- prettier -->
 <div class="signup-wrapper my-4 row">
   <div
@@ -160,6 +161,6 @@
 <!-- prettier-ignore -->
 {% block js %}
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<script src="../static/js/signup.js"></script>
+<script src="{% static 'js/signup.js' %}"></script>
 
 {% endblock js %}

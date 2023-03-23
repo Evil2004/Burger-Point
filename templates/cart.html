@@ -2,8 +2,8 @@
 {% extends 'layout.html' %} 
 {% load static %} 
 {% block title %}Cart{% endblock title %} 
-{% block css %} <link rel="stylesheet" href={% static "css/cart.css" %}> {% endblock css %} 
-{% block content %}
+{% block css %} <link rel="stylesheet" href="{% static 'css/cart.css' %}" /> {%
+endblock css %} {% block content %}
 <!-- prettier -->
 <div class="cart-wrapper">
   <div class="heading d-flex justify-content-center text-center">
@@ -129,5 +129,5 @@
 {% endblock content %} 
 {% block js %}
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<script src="../static/js/cart.js"></script>
+<script src="{% static 'js/cart.js' %}"></script>
 {% endblock js %}

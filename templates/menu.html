@@ -2,8 +2,8 @@
 {% extends "layout.html" %} 
 {% load static %} 
 {% block title%}menu{% endblock title %} 
-{% block css %} <link rel="stylesheet" href={% static "css/menu.css" %}>{% endblock css %} 
-{% block content %}
+{% block css %} <link rel="stylesheet" href="{% static 'css/menu.css' %}" />{%
+endblock css %} {% block content %}
 <!-- prettier -->
 <div class="heading d-flex justify-content-center text-center">
   <h1>Menu</h1>
@@ -184,5 +184,5 @@
 {% endblock content %}
 <!-- ignore-prettier -->
 {% block js %}
-<script src="../static/js/menu.js"></script>
+<script src="{% static 'js/menu.js' %}"></script>
 {% endblock js %}
