@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import User
@@ -36,7 +35,7 @@ class Menu(models.Model):
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = CloudinaryField('image',folder='burger_point/images/')
-    description = models.TextField(default = NULL)
+    description = models.TextField(default = None)
     category = models.CharField(max_length=15)
 
     # It will return the name of the burger
