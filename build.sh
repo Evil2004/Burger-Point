@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pip install -r requirement.txt
+pip install -r requirements.txt
 
 python manage.py makemigrations
 
