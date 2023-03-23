@@ -94,3 +94,8 @@ a {
   text-decoration: none;
   color: black;
 }
+
+.about-us-1 {
+  border-radius: 5px;
+  box-shadow: 0rem 0 20px 1px rgba(0, 0, 0, 0.486);
+}

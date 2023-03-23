@@ -22,6 +22,29 @@ h3 {
 .navbar-nav > a {
   color: black;
   font-size: calc(0.6rem + 0.3vw);
+  text-decoration: none;
+  color: #000;
+  position: relative;
+}
+
+.navbar-nav > a:before {
+  content: "";
+  background: #000;
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-nav > a:hover {
+  background-position: 0;
+}
+
+.navbar-nav > a:hover::before {
+  width: 100%;
 }
 
 .footer-wrapper {

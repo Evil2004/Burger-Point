@@ -24,7 +24,7 @@
     <div class="login-form w-100">
       <h1 class="login-heading mx-2 text-center">Login</h1>
       <p id="error" class="error text-danger"></p>
-      <div class="d-flex flex-column align-items-center">
+      <div class="frm-wrapper d-flex flex-column align-items-center">
         <form onsubmit="sendData();return false;" class="lg-frm" method="POST">
           {% csrf_token %}
           <div class="f-f form-floating">
@@ -36,7 +36,7 @@
               placeholder="Email"
               required
             />
-            <label for="email">Email *</label>
+            <label for="email" class="px-0">Email *</label>
           </div>
           <div class="f-f form-floating">
             <input
@@ -47,9 +47,9 @@
               placeholder="Password"
               required
             />
-            <label for="password">Password *</label>
+            <label for="password" class="px-0">Password *</label>
           </div>
-          <div class="f-f d-flex justify-content-center">
+          <div class="f-f d-flex align-items-center">
             <button type="submit" class="btn btn-primary my-3">Login</button>
           </div>
         </form>
