@@ -9,6 +9,8 @@ DEBUG = False
 
 ADMIN_ENABLED = False
 
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
+
 
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
