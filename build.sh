@@ -1,11 +1,8 @@
 #!/bin/bash
 
 
-
+echo "Starting build script"
 pip install -r requirements.txt
-
-python3 manage.py makemigrations
-
-python3 manage.py migrate
-
-python3 manage.py runserver --settings=burger_point.settings.prod
+echo "Collect static files"
+python3 manage.py collectstatic --noinput --clear
+echo "Build script finished"
