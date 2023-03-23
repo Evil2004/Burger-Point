@@ -1,5 +1,7 @@
 #!/bin/bash
 
+workon food
+
 pip install -r requirements.txt
 
 python manage.py makemigrations
