@@ -2,8 +2,11 @@
 {% extends "layout.html" %}
 {% load static %}
 {% block title%}home{%endblock title%}
-{% block css %} <link rel="stylesheet" href="{% static 'css/home.css' %}" /> {%
-endblock css %} {% block content %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+<!-- prettier-ignore -->
+{%endblock css %} 
+{% block content %}
 <!-- animation banner -->
 <div class="food-animation-wrapper">
   <h1 class="food-animation-heading">Best Seller</h1>
