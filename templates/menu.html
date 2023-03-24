@@ -12,15 +12,15 @@
   <h1>Menu</h1>
 </div>
 <div class="menu-wrapper container">
-  <h2 class="heading-2 m-2 bug-snd text-center">Burgers And Sandwiches</h2>
-  <div class="burger_wrapper w-100 row justify-content-between mt-4">
+  <h2 class="heading-2 bug-snd text-center">Burgers And Sandwiches</h2>
+  <div class="burger_wrapper row mt-4">
     <!-- prettier-ignore -->
     {% for item in menu_items %} 
     {% if item.category == "burger" %}
     <!-- prettier -->
     <div class="item-parent-wrapper p-2 col-md-3">
       <div class="item-wrapper h-100 p-0">
-        <div class="image-wrapper p-1 h-50 w-100">
+        <div class="image-wrapper d-flex justify-content-center p-1 h-50">
           <img
             class="item-image w-100 h-100 rounded"
             src="{{item.image.url}}"
@@ -66,7 +66,7 @@
     <!-- prettier -->
     <!-- Sides -->
     <h2 class="heading-2 m-2 mt-3 mb-0 sid-hdng text-center">Sides</h2>
-    <div class="burger_wrapper w-100 row justify-content-between mt-3">
+    <div class="sides_wrapper w-100 row mt-3">
       <!-- prettier-ignore -->
       {% for item in menu_items %} 
       {% if item.category == "sides" %}
@@ -93,7 +93,7 @@
             {% endif %}
 
             <div
-              class="cart-btn-wrapper mx-1 my-1"
+              class="cart-btn-wrapper mx-1 my-1 position-absolute"
               id="addCartBtn{{item.id}}"
               style="bottom: 10px"
             >
@@ -125,13 +125,13 @@
     </div>
     <!-- Beverages and Deserts -->
     <h2 class="heading-2 m-2 bvg-dsrt text-center">Beverages and Deserts</h2>
-    <div class="burger_wrapper w-100 row justify-content-between mt-4">
+    <div class="bevdes_wrapper w-100 row mt-4">
       <!-- prettier-ignore -->
       {% for item in menu_items %} 
       {% if item.category == "beverage" or item.category == "dessert" %}
       <!-- prettier -->
       <div class="item-parent-wrapper p-2 col-md-3">
-        <div class="item-wrapper h-100 p-0">
+        <div class="item-wrapper p-0">
           <div class="image-wrapper p-2 h-50 w-100">
             <img
               class="item-image w-100 h-100 rounded"
@@ -183,6 +183,7 @@
     {% endfor %}
     </div>
   </div>
+  <div class="sudo"></div>
 </div>
 {% endblock content %}
 <!-- ignore-prettier -->
