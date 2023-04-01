@@ -8,9 +8,11 @@
 {%endblock css %} 
 {% block content %}
 <!-- prettier -->
-<div class="login-wrapper my-4 row">
+<div class="parent-wrapper my-4">
+     <h1 class="login-heading mx-2 text-center">Login</h1>
+  <div class="login-wrapper">
   <div
-    class="login-img-anim p-auto m-auto col-md d-flex justify-content-center"
+    class="login-img-anim col-md d-flex justify-content-center"
   >
     <lottie-player
       src="https://assets2.lottiefiles.com/private_files/lf30_1koj5vle.json"
@@ -22,10 +24,9 @@
     ></lottie-player>
   </div>
   <div
-    class="login-form-wrapper d-flex align-content-center container pl-3 ml-3 col-md"
+    class="login-form-wrapper d-flex align-content-center container"
   >
     <div class="login-form w-100">
-      <h1 class="login-heading mx-2 text-center">Login</h1>
       <p id="error" class="error text-danger"></p>
       <div class="frm-wrapper d-flex flex-column align-items-center">
         <form onsubmit="sendData();return false;" class="lg-frm" method="POST">
@@ -64,6 +65,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </div>
 <!-- prettier-ignore -->
