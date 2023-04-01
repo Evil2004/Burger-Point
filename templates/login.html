@@ -9,63 +9,63 @@
 {% block content %}
 <!-- prettier -->
 <div class="parent-wrapper my-4">
-     <h1 class="login-heading mx-2 text-center">Login</h1>
+  <h1 class="login-heading mx-2 text-center">Login</h1>
   <div class="login-wrapper">
-  <div
-    class="login-img-anim col-md d-flex justify-content-center"
-  >
-    <lottie-player
-      src="https://assets2.lottiefiles.com/private_files/lf30_1koj5vle.json"
-      background="transparent"
-      speed="1"
-      class="w-75"
-      loop
-      autoplay
-    ></lottie-player>
-  </div>
-  <div
-    class="login-form-wrapper d-flex align-content-center container"
-  >
-    <div class="login-form w-100">
-      <p id="error" class="error text-danger"></p>
-      <div class="frm-wrapper d-flex flex-column align-items-center">
-        <form onsubmit="sendData();return false;" class="lg-frm" method="POST">
-          {% csrf_token %}
-          <div class="f-f form-floating">
-            <input
-              type="text"
-              name="email"
-              id="email"
-              class="form-control"
-              placeholder="Email"
-              required
-            />
-            <label for="email" class="px-0">Email *</label>
+    <div class="login-img col-md d-flex justify-content-center">
+      <lottie-player
+        src="https://assets2.lottiefiles.com/private_files/lf30_1koj5vle.json"
+        background="transparent"
+        speed="1"
+        class="lottie--img"
+        loop
+        autoplay
+      ></lottie-player>
+    </div>
+    <div class="login-form-wrapper container">
+      <div class="login-form w-100">
+        <p id="error" class="error text-danger"></p>
+        <div class="frm-wrapper d-flex flex-column align-items-center">
+          <form
+            onsubmit="sendData();return false;"
+            class="lg-frm"
+            method="POST"
+          >
+            {% csrf_token %}
+            <div class="f-f form-floating">
+              <input
+                type="text"
+                name="email"
+                id="email"
+                class="form-control"
+                placeholder="Email"
+                required
+              />
+              <label for="email" class="px-0">Email *</label>
+            </div>
+            <div class="f-f form-floating">
+              <input
+                type="password"
+                name="password"
+                id="password"
+                class="form-control"
+                placeholder="Password"
+                required
+              />
+              <label for="password" class="px-0">Password *</label>
+            </div>
+            <div class="f-f d-flex align-items-center">
+              <button type="submit" class="btn btn-primary my-3">Login</button>
+            </div>
+          </form>
+          <div class="f-f">
+            <p class="f-r">
+              Don't have an account? <br />
+              <a href="/register/">Register</a>
+            </p>
           </div>
-          <div class="f-f form-floating">
-            <input
-              type="password"
-              name="password"
-              id="password"
-              class="form-control"
-              placeholder="Password"
-              required
-            />
-            <label for="password" class="px-0">Password *</label>
-          </div>
-          <div class="f-f d-flex align-items-center">
-            <button type="submit" class="btn btn-primary my-3">Login</button>
-          </div>
-        </form>
-        <div class="f-f">
-          <p class="f-r">
-            Don't have an account? <br />
-            <a href="/register/">Register</a>
-          </p>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </div>
 <!-- prettier-ignore -->

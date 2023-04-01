@@ -46,6 +46,9 @@ h3 {
 .navbar-nav > a:hover::before {
   width: 100%;
 }
+.nav-link {
+  padding: 0;
+}
 
 .footer-wrapper {
   background-color: transparent;
