@@ -144,3 +144,10 @@ select:-webkit-autofill:active {
   color: #010101;
   border-color: black;
 }
+@media screen and (max-width: 600px) {
+
+  .login-wrapper {
+    width: 90%;
+  }
+  
+}
