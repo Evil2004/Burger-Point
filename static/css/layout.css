@@ -19,6 +19,11 @@ h3 {
   background: linear-gradient(315deg, #eee 0%, orange 22%, #eee 75%);
 }
 
+.navbar--img {
+  width: 20%;
+  margin: 0 5px;
+}
+
 .navbar-nav > a {
   color: black;
   font-size: calc(0.6rem + 0.3vw);
