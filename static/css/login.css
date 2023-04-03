@@ -72,13 +72,13 @@ label {
   color: black;
 }
 
-a {
+.f-r > a {
   text-decoration: none;
   color: #000;
   position: relative;
 }
 
-a:before {
+.f-r > a:before {
   content: "";
   background: #000;
   display: block;
@@ -90,11 +90,11 @@ a:before {
   transition: all 0.3s ease-in-out;
 }
 
-a:hover {
+.f-r > a:hover {
   background-position: 0;
 }
 
-a:hover::before {
+.f-r > a:hover::before {
   width: 100%;
 }
 input:-internal-autofill-selected,
@@ -122,14 +122,15 @@ select:-webkit-autofill:active {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  font-size: calc(0.6rem + 0.3vw);
+  font-size: calc(0.7rem + 0.4vw);
+  font-weight: 500;
 }
 
 .btn {
   width: calc(50% - 0.6rem);
   height: 5vh;
   margin: 0 auto;
-  font-size: calc(0.5rem + 0.1vw);
+  font-size: calc(0.6rem + 0.2vw);
   border: none;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.557);
   padding: 0;
@@ -145,9 +146,7 @@ select:-webkit-autofill:active {
   border-color: black;
 }
 @media screen and (max-width: 600px) {
-
   .login-wrapper {
     width: 90%;
   }
-  
 }
